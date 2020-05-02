@@ -25,11 +25,11 @@ def process_object(_object, image):
 
   return (resized, label)
 
-def load_data():
+def process_data():
   x_data = []
   y_data = []
 
-  for index in range(1):
+  for index in range(DATA_COUNT):
     with open(f'dataset/labels/{index}.xml') as file:
       data = file.read()
     data = xmltodict.parse(data)
@@ -55,5 +55,14 @@ def load_data():
 
   x_data = np.array(x_data)
   y_data = np.array(y_data)
+
+  np.save('dataset/images', x_data)
+  np.save('dataset/labels', y_data)
+
+  return (x_data, y_data)
+
+def load_data():
+  x_data = np.load('dataset/images.npy')
+  y_data = np.load('dataset/labels.npy')
 
   return (x_data, y_data)
