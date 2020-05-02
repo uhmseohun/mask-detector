@@ -25,3 +25,6 @@ model.fit(
   validation_split=0.05,
   shuffle=True
 )
+
+model.save('trained/model.h5')
+model.save_weights('trained/model_weights.h5')
